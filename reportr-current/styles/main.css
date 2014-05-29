@@ -1,0 +1,2930 @@
+/*
+,--.   ,--.        ,--.            ,--.                                    ,--.
+|   `.'   | ,--,--.`--',--,--,     |  |    ,--,--.,--. ,--.,---. ,--.,--.,-'  '-.
+|  |'.'|  |' ,-.  |,--.|      \    |  |   ' ,-.  | \  '  /| .-. ||  ||  |'-.  .-'
+|  |   |  |\ '-'  ||  ||  ||  |    |  '--.\ '-'  |  \   ' ' '-' ''  ''  '  |  |
+`--'   `--' `--`--'`--'`--''--'    `-----' `--`--'.-'  /   `---'  `----'   `--'
+                                                  `---'
+*/
+
+@font-face {
+    font-family: CenturyGothic;
+    src: url("../fonts/gothic.ttf");
+}
+@font-face {
+    font-family: CenturyGothicBold;
+    src: url("../fonts/gothicb.ttf");
+}
+@font-face {
+    font-family: CenturyGothicItalic;
+    src: url("../fonts/gothici.ttf");
+}
+@font-face {
+    font-family: CenturyGothicBoldItalic;
+    src: url("../fonts/gothicbi.ttf");
+}
+@font-face {
+    font-family: RobotoRegular;
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+@font-face {
+    font-family: RobotoCondensed;
+    src: url("../fonts/Roboto-Condensed.ttf");
+}
+@font-face {
+    font-family: RobotoLight;
+    src: url("../fonts/Roboto-Light.ttf");
+}
+@font-face {
+    font-family: RobotoBold;
+    src: url("../fonts/Roboto-Bold.ttf");
+}
+@font-face {
+    font-family: RobotoThin;
+    src: url("../fonts/Roboto-Thin.ttf");
+}
+@font-face {
+    font-family: RobotoBoldCondensed;
+    src: url("../fonts/Roboto-BoldCondensed.ttf");
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: CenturyGothic, Arial, Helvetica, sans-serif;
+    font-size:90%;
+    background-color: #fff;
+}
+#wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    postion: relative;
+}
+#header {
+    width: 100%;
+    height: 100px;
+    border-bottom: 3px solid #00DEFF;
+    postion: relative;
+}
+
+#body {
+    width: 900px;
+    height: 650px;
+    background-color: #fff;
+    margin: 0 auto;
+    position: relative;
+}
+#content {
+    position: absolute;
+    background-color: #fff;
+    top: 25px;
+    left: 0;
+    width: 625px;
+    height: 600px;
+}
+#logo {
+    width: 900px;
+    height:100px;
+    position: absolute;
+    top: -67px;
+    left: 0;
+    background-image: url('../artwork/HeaderLogoLightWithClock.png');
+}
+#sidebar {
+    background-color: #00DEFF;
+    position:absolute;
+    top: 50px;
+    left: 650px;
+    width: 250px;;
+    height: 575px;
+}
+#sidebarTitle {
+    font-size: 155%;
+    position: absolute;
+    top: -23px;
+    color: #525252;
+}
+#clockDiv {
+    font-size: 290%;
+    position: absolute;
+    top: -96px;
+    left: 5px;
+    color: #999;
+}
+#clock .clockSeconds {
+    color: #777;
+}
+#clock .ampm {
+    text-transform: uppercase;
+}
+#clock .clockHours {
+    color: #00DEFF;
+    font-family: CenturyGothicBold, sans-serif;
+}
+#clock .clockMinutes {
+    color: #777;
+}
+#footer {
+    min-width: 900px;
+    width: 100%;
+    height: 15px;
+    background-color: #525252;
+    padding: 25px 0;
+    box-shadow:0px 5px 5px #444;
+
+}
+#footer sup {
+    font-size: 60%;
+}
+
+div#actionBar {
+    background: url(images/actionBarBackground.jpg) #888 repeat-x;
+    height: 50px;
+    min-width: 900px;
+}
+#screen {
+    width: 100%;
+    height:100%;
+    opacity:0.7;
+    background-color:#fff;
+    position: absolute;
+    z-index: 9;
+    top:0px;
+    left: 0px;
+    display: none;
+
+}
+#screen.hide {
+    animation: hideBox7 250ms;
+    -moz-animation: hideBox7 250ms;
+    -webkit-animation: hideBox7 250ms;
+    -o-animation: hideBox7 250ms;
+
+}
+#screen.show {
+    display: block;
+    opacity:0;
+    animation: showBox7 250ms;
+    -moz-animation: showBox7 250ms;
+    -webkit-animation: showBox7 250ms;
+    -o-animation: showBox7 250ms;
+}
+#screen.shown {
+    display: block;
+    opacity: 0.7;
+}
+/*
+
+  ,---.          ,--.                    ,--.  ,--.
+ /  O  \ ,--,--, `--',--,--,--. ,--,--.,-'  '-.`--' ,---. ,--,--,  ,---.
+|  .-.  ||      \,--.|        |' ,-.  |'-.  .-',--.| .-. ||      \(  .-'
+|  | |  ||  ||  ||  ||  |  |  |\ '-'  |  |  |  |  |' '-' '|  ||  |.-'  `)
+`--' `--'`--''--'`--'`--`--`--' `--`--'  `--'  `--' `---' `--''--'`----'
+
+*/
+
+@keyframes hideBox
+{
+    0%   {opacity: 1.0;}
+    25%  {opacity: 0.75;}
+    50%  {opacity: 0.5}
+    75%  {opacity: 0.25;}
+    100% {opacity: 0;}
+}
+
+@-moz-keyframes hideBox /* Firefox */
+{
+    0%   {opacity: 1.0;}
+    25%  {opacity: 0.75;}
+    50%  {opacity: 0.5}
+    75%  {opacity: 0.25;}
+    100% {opacity: 0;}
+}
+
+@-webkit-keyframes hideBox /* Safari and Chrome */
+{
+    0%   {opacity: 1.0;}
+    25%  {opacity: 0.75;}
+    50%  {opacity: 0.5}
+    75%  {opacity: 0.25;}
+    100% {opacity: 0;}
+}
+
+@-o-keyframes hideBox /* Opera */
+{
+    0%   {opacity: 1.0;}
+    25%  {opacity: 0.75;}
+    50%  {opacity: 0.5}
+    75%  {opacity: 0.25;}
+    100% {opacity: 0;}
+}
+
+@keyframes showBox
+{
+    0%   {opacity: 0;}
+    25%  {opacity: 0.25;}
+    50%  {opacity: 0.5}
+    75%  {opacity: 0.75;}
+    100% {opacity: 1;}
+}
+
+@-moz-keyframes showBox /* Firefox */
+{
+    0%   {opacity: 0;}
+    25%  {opacity: 0.25;}
+    50%  {opacity: 0.5}
+    75%  {opacity: 0.75;}
+    100% {opacity: 1;}
+}
+
+@-webkit-keyframes showBox /* Safari and Chrome */
+{
+    0%   {opacity: 0;}
+    25%  {opacity: 0.25;}
+    50%  {opacity: 0.5}
+    75%  {opacity: 0.75;}
+    100% {opacity: 1;}
+}
+
+@-o-keyframes showBox /* Opera */
+{
+    0%   {opacity: 0;}
+    25%  {opacity: 0.25;}
+    50%  {opacity: 0.5}
+    75%  {opacity: 0.75;}
+    100% {opacity: 1;}
+}
+@keyframes hideBox7
+{
+    0%   {opacity: 0.7;}
+    25%  {opacity: 0.5;}
+    50%  {opacity: 0.3;}
+    75%  {opacity: 0.1;}
+    100% {opacity: 0;}
+}
+
+@-moz-keyframes hideBox7 /* Firefox */
+{
+    0%   {opacity: 0.7;}
+    25%  {opacity: 0.5;}
+    50%  {opacity: 0.3;}
+    75%  {opacity: 0.1;}
+    100% {opacity: 0;}
+}
+
+@-webkit-keyframes hideBox7 /* Safari and Chrome */
+{
+    0%   {opacity: 0.7;}
+    25%  {opacity: 0.5;}
+    50%  {opacity: 0.3;}
+    75%  {opacity: 0.1;}
+    100% {opacity: 0;}
+}
+
+@-o-keyframes hideBox7 /* Opera */
+{
+    0%   {opacity: 0.7;}
+    25%  {opacity: 0.5;}
+    50%  {opacity: 0.3;}
+    75%  {opacity: 0.1;}
+    100% {opacity: 0;}
+}
+
+@keyframes showBox7
+{
+    0%   {opacity: 0;}
+    25%  {opacity: 0.1;}
+    50%  {opacity: 0.3;}
+    75%  {opacity: 0.5;}
+    100% {opacity: 0.7;}
+}
+
+@-moz-keyframes showBox7 /* Firefox */
+{
+    0%   {opacity: 0;}
+    25%  {opacity: 0.1;}
+    50%  {opacity: 0.3;}
+    75%  {opacity: 0.5;}
+    100% {opacity: 0.7;}
+}
+
+@-webkit-keyframes showBox7 /* Safari and Chrome */
+{
+    0%   {opacity: 0;}
+    25%  {opacity: 0.1;}
+    50%  {opacity: 0.3;}
+    75%  {opacity: 0.5;}
+    100% {opacity: 0.7;}
+}
+
+@-o-keyframes showBox7 /* Opera */
+{
+    0%   {opacity: 0;}
+    25%  {opacity: 0.1;}
+    50%  {opacity: 0.3;}
+    75%  {opacity: 0.5;}
+    100% {opacity: 0.7;}
+}
+/*
+
+,--.   ,--.        ,--.            ,--------.                  ,--.
+|   `.'   | ,--,--.`--',--,--,     '--.  .--',---. ,--.  ,--.,-'  '-.
+|  |'.'|  |' ,-.  |,--.|      \       |  |  | .-. : \  `'  / '-.  .-'
+|  |   |  |\ '-'  ||  ||  ||  |       |  |  \   --. /  /.  \   |  |
+`--'   `--' `--`--'`--'`--''--'       `--'   `----''--'  '--'  `--'
+
+
+*/
+strong, .strong {
+    font-family: CenturyGothicBold;
+
+}
+h1 {
+    font-family: CenturyGothic, sans-serif;
+    font-size: 300%;
+}
+#footer p {
+    color: white;
+    font-family: CenturyGothicBold, sans-serif;
+    width: 900px;
+    margin: 0 auto;
+}
+
+#footer a:link, #footer a:visited {
+    color: #00DEFF;
+    text-decoration: none;
+}
+#footer a:hover, #footer a:active {
+    text-decoration:underline;
+}
+a:link {
+    color: #00deff;
+    font-family:CenturyGothicBold;
+    text-decoration: none;
+}
+a:visited {
+    color: #00deff;
+    font-family:CenturyGothicBold;
+    text-decoration: none;
+}
+
+/*
+
+,--.  ,--.                  ,--.                 ,--.  ,--.
+|  ,'.|  | ,--,--.,--.  ,--.`--' ,---.  ,--,--.,-'  '-.`--' ,---. ,--,--,
+|  |' '  |' ,-.  | \  `'  / ,--.| .-. |' ,-.  |'-.  .-',--.| .-. ||      \
+|  | `   |\ '-'  |  \    /  |  |' '-' '\ '-'  |  |  |  |  |' '-' '|  ||  |
+`--'  `--' `--`--'   `--'   `--'.`-  /  `--`--'  `--'  `--' `---' `--''--'
+                                `---'
+*/
+div#buttons {
+    position: absolute;
+    top: 550px;
+    left: 0;
+    font-size: 140%;
+}
+div#buttons a.back:link, a.back:visited {
+    text-decoration: none;
+    color: #777;
+}
+div#buttons a.forward:link, a.forward:visited {
+    text-decoration: none;
+    color: #0cf;
+    font-family: CenturyGothicBold;
+}
+div#buttons a.forward {
+    margin-left: 475px;
+}
+
+
+/* Scroll Bar Test
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.4);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar {
+    width:8px;
+    height:8px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece {
+    background-color:white;
+    opacity: 0.2;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(053, 057, 071, 0.3);
+    width: 6px;
+    height: 6px;
+}
+*/
+
+/* IE FIXES */
+
+a img {border: none; }
+
+
+/*
+                                                                       
+  ,---.          ,--.  ,--.                   ,-----.                  
+ /  O  \  ,---.,-'  '-.`--' ,---. ,--,--,     |  |) /_  ,--,--.,--.--. 
+|  .-.  || .--''-.  .-',--.| .-. ||      \    |  .-.  \' ,-.  ||  .--' 
+|  | |  |\ `--.  |  |  |  |' '-' '|  ||  |    |  '--' /\ '-'  ||  |    
+`--' `--' `---'  `--'  `--' `---' `--''--'    `------'  `--`--'`--'    
+                                                                       
+Location: ../includes/ReportrHTML_actionBarNew.inc.php
+*/
+#actionBarContentWrap {
+	width: 900px;
+	margin: 0 auto;	
+	position: relative;
+}
+#actionBar .actionBarButton {
+	height: 32px; 
+	min-width: 50px;	
+	font-family: CenturyGothicBold;
+	text-transform: uppercase;
+	font-weight: normal;
+	color: #eee;
+	font-size: 18px;
+	margin: 7px 20px 7px 0;
+	padding: 2px 6px;
+	display: inline-block;
+	text-decoration:none;
+}
+#actionBar .overflowed {
+	background: url(../images/actionBar/overflow_background.png) no-repeat top right;	
+}
+#actionBar .actionBarButton:hover {
+	background-color: #333;
+}
+#actionBar .actionBarButton:active {
+	background-color: #525252;
+}
+#actionBar .actionBarButton .actionBarIcon {
+	float: left;
+}
+#actionBar .actionBarButton .actionBarButtonText {
+	float: left;
+	margin-top: 4px;
+	margin-left: 5px;
+}
+#actionBar #refresh {
+	margin-left: 30px;	
+}
+#actionBar #newOverflow {
+	top: -65px;
+	left: 185px; 	
+	position: absolute;	 
+	border: 1px solid white;
+	display: none;
+}
+#actionBar #editOverflow {
+	top: -65px;
+	left: 293px; 	   
+	position: absolute;	 
+	border: 1px solid white;
+	display: none;
+}
+#actionBar #newOverflow .actionBarButton,
+#actionBar #editOverflow .actionBarButton {
+	height: 32px;
+	width: 200px;	
+	font-family: CenturyGothicBold; 
+	text-transform: uppercase;
+	font-weight: normal;
+	color: #eee;
+	background-color: #888;
+	font-size: 18px;
+	margin: 0px 0 0px 0;
+	padding: 2px 6px;
+	display: block;
+	text-decoration:none; 
+}
+#actionBar #newOverflow .actionBarButton:hover,
+#actionBar #editOverflow .actionBarButton:hover {
+	background-color: #333;
+}
+#actionBar #newOverflow .actionBarButton:active,
+#actionBar #editOverflow .actionBarButton:active {
+	background-color: #525252;
+}
+#actionBar a.disabled {
+	background-color: #222 !important;
+	color: #444 !important;
+}
+#actionBar img.disabled {
+	opacity: 0.3;
+}
+/*
+                                                 
+ ,---.  ,--.   ,--.       ,--.                   
+'   .-' `--' ,-|  | ,---. |  |-.  ,--,--.,--.--. 
+`.  `-. ,--.' .-. || .-. :| .-. '' ,-.  ||  .--' 
+.-'    ||  |\ `-' |\   --.| `-' |\ '-'  ||  |    
+`-----' `--' `---'  `----' `---'  `--`--'`--'    
+                                                 
+Location: ../includes/ReportrHTML_sidebar.inc.php
+*/
+#sidebar #clockedIn {
+	width: 230px;
+	height: 455px;
+	margin: 10px 10px 0px 10px;
+	overflow-y:auto;
+}
+#sidebar #clockedIn .clockedInEntry {
+	width: 100%;
+	height: 55px;
+	margin: 0 auto 8px auto;
+	padding: 0 0 5px 0;
+	border-bottom: 1px solid white;
+}
+#sidebar #clockedIn .clockedInEntry span.name, 
+#sidebar #clockedIn .clockedInEntry span.jobNum,
+#sidebar #clockedIn .clockedInEntry span.clockIn
+{
+	display:block;
+	font-size: 13px;
+	color: #333;
+		
+}
+#sidebar #clockedIn .clockedInEntry span.name {
+	font-family: CenturyGothicBold;
+}
+
+#sidebar #clockedIn .clockedInEntry span.clockIn {
+	font-family: CenturyGothicItalic;
+	
+}
+#sidebar #openJobs {
+	min-width: 230px;
+	height: 65px;
+	margin: 10px 10px;
+	overflow-x:auto;
+	overflow-y:hidden;
+	white-space: nowrap;
+}
+#sidebar #openJobsTitle {
+	width: 100%;
+	background-color:#fff;
+	height: 25px;	
+	margin-top: 3px;
+	font-size: 155%;
+	color: #525252;
+}
+
+#sidebar #openJobs .openJobEntry {
+	height: 61px;
+	width: 100px;
+	border-right: 1px solid white;
+	display: inline-block;
+	white-space:nowrap;
+	padding: 2px 5px;
+}
+#sidebar #openJobs .openJobEntry .openJobEntry_JobNumber {
+	font-family: CenturyGothicBold;
+	font-size: 22px;
+	color: #333;
+	display: block;
+	text-align:center;
+}
+#sidebar #openJobs .openJobEntry .openJobEntry_JobDescription {
+	font-family: CenturyGothic;
+	font-size: 12px;
+	color: #333;
+	display: block;
+	text-align:center;
+	word-wrap:break-word;
+	overflow:hidden;
+}
+#sidebar #userBox {
+	min-width: 500px;
+	position: absolute;
+	top: -130px;
+	right: 0;
+	text-align:right;
+	color: #777;
+}
+#sidebar #userBox strong {
+	color: #00deff;	
+}
+#sidebar #userBox a:link, #sidebar #userBox a:visited {
+	text-decoration: none;
+	color: #00deff;
+	font-family:CenturyGothicBold, sans-serif;
+}
+/*
+
+                                                          
+ ,---.           ,--.    ,--.  ,--.                       
+'   .-'  ,---. ,-'  '-.,-'  '-.`--',--,--,  ,---.  ,---.  
+`.  `-. | .-. :'-.  .-''-.  .-',--.|      \| .-. |(  .-'  
+.-'    |\   --.  |  |    |  |  |  ||  ||  |' '-' '.-'  `) 
+`-----'  `----'  `--'    `--'  `--'`--''--'.`-  / `----'  
+                                           `---'                                                                                                                             
+Location: ../settings.php
+*/
+
+div.settingsPage {
+	position: relative;
+}
+
+div.settingsPage  .instructions {	
+	font-size: 36px;
+	font-family: CenturyGothicBold;
+	color: #555;
+	position: absolute;
+	top: 60px;
+	left: 150px;
+}
+div.settingsPage  #form {	
+	position: absolute;
+	top: 150px;
+	width:100%;
+	left: 0;
+}
+div.settingsPage .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+div.settingsPage .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+div.settingsPage .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+div.settingsPage .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+div.settingsPage .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+div.settingsPage input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #555;
+	margin-left:7px;
+}
+div.settingsPage input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+div.settingsPage input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+div.settingsPage input:focus {
+	border: none;
+	outline: none;
+}
+div.settingsPage label { 
+	font-size: 120%;
+	display: inline-block;
+}
+div.settingsPage label.radio {
+    font-size:  95%;
+    display: normal;
+    color:  #555;
+}
+div.settingsPage #deleteIcon {
+	float: left;
+	margin-top: -8px;	
+}
+div.settingsPage input[type=checkbox] {
+	display:none;
+}
+/*
+                                                                                           
+,--.  ,--.                           ,--.       ,--.       ,------.                        
+|  ,'.|  | ,---. ,--.   ,--.         |  | ,---. |  |-.     |  .---',---. ,--.--.,--,--,--. 
+|  |' '  || .-. :|  |.'.|  |    ,--. |  || .-. || .-. '    |  `--,| .-. ||  .--'|        | 
+|  | `   |\   --.|   .'.   |    |  '-'  /' '-' '| `-' |    |  |`  ' '-' '|  |   |  |  |  | 
+`--'  `--' `----''--'   '--'     `-----'  `---'  `---'     `--'    `---' `--'   `--`--`--' 
+                                                                                                                                                                                                                                                         `---
+Location: ../includes/ReportrHTML_newJobForm.inc.php
+*/
+#newJobForm {
+	position: absolute;
+	background-color: #fff;	
+	top: 75px;
+	left: 50%;
+	margin-left: -300px;
+	width: 600px;
+	height: 420px;
+	box-shadow: #525252 0 0 15px;
+	display: none;
+	opacity: 1.0;
+	z-index:10000;
+}
+  #newJobForm #NJFcontent {
+	width: 580px;
+	height: 400px;
+	margin: 10px;	
+}
+  #newJobForm.hide {
+	animation: hideBox 250ms;
+	-moz-animation: hideBox 250ms;	
+	-webkit-animation: hideBox 250ms;	
+	-o-animation: hideBox 250ms;	
+	
+}
+  #newJobForm.show {
+	display: block;
+	opacity:0;
+	animation: showBox 250ms;
+	-moz-animation: showBox 250ms;	
+	-webkit-animation: showBox 250ms;	
+	-o-animation: showBox 250ms;	
+}
+  #newJobForm.shown {
+	display: block;
+	opacity: 1.0;
+}
+  #newJobForm #close {
+	text-decoration: none;
+	color: #fff;
+	font-family: CenturyGothicBold;	
+	font-size: 18px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+  #newJobForm #newJobFormHeader {
+	font-size: 28px;
+	color: #fff;
+	background-color: #00deff;
+	width: 580px;
+	height: 36px;
+	padding: 0 10px;
+	 	
+}
+  #newJobForm .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+  #newJobForm .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+  #newJobForm .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+  #newJobForm .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+  #newJobForm .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+
+  #newJobForm input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #555;
+	margin-left:7px;
+}
+  #newJobForm input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+  #newJobForm input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+  #newJobForm input:focus {
+	border: none;
+	outline: none;
+}
+  #newJobForm label { 
+	font-size: 120%;
+	display: inline-block;
+}
+ #newJobForm #submit {
+	font-size: 130%;
+	color: #00deff;
+	text-decoration: none;
+	font-family:CenturyGothicBold;
+	position: absolute;
+	bottom: 15px;
+	right: 10px; 	
+}
+#newJobForm #submit:hover {
+	color: #09F;
+}
+/*
+                                                                                                                             
+,--.  ,--.                      ,------.                 ,--.                                ,------.                        
+|  ,'.|  | ,---. ,--.   ,--.    |  .---',--,--,--. ,---. |  | ,---.,--. ,--.,---.  ,---.     |  .---',---. ,--.--.,--,--,--. 
+|  |' '  || .-. :|  |.'.|  |    |  `--, |        || .-. ||  || .-. |\  '  /| .-. :| .-. :    |  `--,| .-. ||  .--'|        | 
+|  | `   |\   --.|   .'.   |    |  `---.|  |  |  || '-' '|  |' '-' ' \   ' \   --.\   --.    |  |`  ' '-' '|  |   |  |  |  | 
+`--'  `--' `----''--'   '--'    `------'`--`--`--'|  |-' `--' `---'.-'  /   `----' `----'    `--'    `---' `--'   `--`--`--' 
+                                                  `--'             `---'                                                                                                                                                                                                                                                                                                              `---
+Location: ../includes/ReportrHTML_newEmployeeForm.inc.php
+*/
+#newEmployeeForm {
+	position: absolute;
+	background-color: #fff;	
+	top: 75px;
+	left: 50%;
+	margin-left: -300px;
+	width: 600px;
+	height: 275px;
+	box-shadow: #525252 0 0 15px;
+	display: none;
+	opacity: 1.0;
+	z-index:10000;
+}
+#newEmployeeForm #NEFcontent {
+	width: 580px;
+	height: 380px;
+	margin: 10px;	
+}
+#newEmployeeForm.hide {
+	animation: hideBox 250ms;
+	-moz-animation: hideBox 250ms;	
+	-webkit-animation: hideBox 250ms;	
+	-o-animation: hideBox 250ms;	
+	
+}
+#newEmployeeForm.show {
+	display: block;
+	opacity:0;
+	animation: showBox 250ms;
+	-moz-animation: showBox 250ms;	
+	-webkit-animation: showBox 250ms;	
+	-o-animation: showBox 250ms;	
+}
+#newEmployeeForm.shown {
+	display: block;
+	opacity: 1.0;
+}
+#newEmployeeForm #close {
+	text-decoration: none;
+	color: #fff;
+	font-family: CenturyGothicBold;	
+	font-size: 18px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+#newEmployeeForm #newEmployeeFormHeader {
+	font-size: 28px;
+	color: #fff;
+	background-color: #00deff;
+	width: 580px;
+	height: 36px;
+	padding: 0 10px;
+	 	
+}
+#newEmployeeForm .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+#newEmployeeForm .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+#newEmployeeForm .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+#newEmployeeForm .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+#newEmployeeForm .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+
+#newEmployeeForm input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #555;
+	margin-left:7px;
+}
+#newEmployeeForm input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+#newEmployeeForm input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+#newEmployeeForm input:focus {
+	border: none;
+	outline: none;
+}
+#newEmployeeForm label { 
+	font-size: 120%;
+	display: inline-block;
+}
+#newEmployeeForm #submit {
+	font-size: 130%;
+	color: #00deff;
+	text-decoration: none;
+	font-family:CenturyGothicBold;
+	position: absolute;
+	top: 240px;
+	right: 10px; 	
+}
+#newEmployeeForm #submit:hover {
+	color: #09F;
+}
+
+/*
+                                                                                    
+,--.   ,--.                                               ,-----.                   
+|   `.'   | ,---.  ,---.  ,---.  ,--,--. ,---.  ,---.     |  |) /_  ,---.,--.  ,--. 
+|  |'.'|  || .-. :(  .-' (  .-' ' ,-.  || .-. || .-. :    |  .-.  \| .-. |\  `'  /  
+|  |   |  |\   --..-'  `).-'  `)\ '-'  |' '-' '\   --.    |  '--' /' '-' '/  /.  \  
+`--'   `--' `----'`----' `----'  `--`--'.`-  /  `----'    `------'  `---''--'  '--' 
+                                        `---'                                                                                                                                                                                                  `--'                                                                                                              `--'             `---'                                                     
+Location: ../includes/ReportrHTML_msgBox.inc.php
+*/
+div#msgBox {
+	width: 400px;
+	min-height: 20px;
+	background: #777;
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	margin-left: -200px;
+	padding: 10px;
+	box-shadow:#333 0 0 20px;
+	font-family: CenturyGothic;
+	color: white; 
+	display: none;
+	z-index:100000;
+}
+div#msgBox a#close {
+	text-decoration: none;
+	position: absolute;
+	top: -2px;  
+	right: 5px;
+	color: white;
+}
+#msgBox.hide {
+	animation: hideBox 250ms;
+	-moz-animation: hideBox 250ms;	
+	-webkit-animation: hideBox 250ms;	
+	-o-animation: hideBox 250ms;		
+}
+#msgBox.show {
+	display: block;
+	opacity:0;
+	animation: showBox 250ms;
+	-moz-animation: showBox 250ms;	
+	-webkit-animation: showBox 250ms;	
+	-o-animation: showBox 250ms;		
+}
+#msgBox.shown {
+	display: block;
+	opacity:1.0;
+}
+#msgBox #boxType {
+	display: none;	
+}
+/*
+                                                                                                                            
+,------.   ,--.,--.  ,--.      ,------.                 ,--.                                ,------.                        
+|  .---' ,-|  |`--',-'  '-.    |  .---',--,--,--. ,---. |  | ,---.,--. ,--.,---.  ,---.     |  .---',---. ,--.--.,--,--,--. 
+|  `--, ' .-. |,--.'-.  .-'    |  `--, |        || .-. ||  || .-. |\  '  /| .-. :| .-. :    |  `--,| .-. ||  .--'|        | 
+|  `---.\ `-' ||  |  |  |      |  `---.|  |  |  || '-' '|  |' '-' ' \   ' \   --.\   --.    |  |`  ' '-' '|  |   |  |  |  | 
+`------' `---' `--'  `--'      `------'`--`--`--'|  |-' `--' `---'.-'  /   `----' `----'    `--'    `---' `--'   `--`--`--' 
+                                                 `--'             `---'                                                     
+Location: ../includes/ReportrHTML_editEmployeeForm.inc.php
+*/
+#editEmployeeForm {
+	position: absolute;
+	background-color: #fff;	
+	top: 105px;
+	left: 50%;
+	margin-left: -300px;
+	width: 600px;
+	height: 195px;
+	box-shadow: #525252 0 0 15px;
+	display: none;
+	opacity: 1.0;
+	z-index:10000;
+}
+#editEmployeeForm #EEFcontent {
+	width: 580px;
+	height: 195px;
+	margin: 10px;	
+}
+#editEmployeeForm.hide {
+	animation: hideBox 250ms;
+	-moz-animation: hideBox 250ms;	
+	-webkit-animation: hideBox 250ms;	
+	-o-animation: hideBox 250ms;	
+	
+}
+#editEmployeeForm.show {
+	display: block;
+	opacity:0;
+	animation: showBox 250ms;
+	-moz-animation: showBox 250ms;	
+	-webkit-animation: showBox 250ms;	
+	-o-animation: showBox 250ms;	
+}
+#editEmployeeForm.shown {
+	display: block;
+	opacity: 1.0;
+}
+#editEmployeeForm #close {
+	text-decoration: none;
+	color: #fff;
+	font-family: CenturyGothicBold;	
+	font-size: 18px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+#editEmployeeForm #editEmployeeFormHeader {
+	font-size: 28px;
+	color: #fff;
+	background-color: #00deff;
+	width: 580px;
+	height: 36px;
+	padding: 0 10px;
+	 	
+}
+#editEmployeeForm .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+#editEmployeeForm .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+#editEmployeeForm .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+#editEmployeeForm .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+#editEmployeeForm .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+
+#editEmployeeForm input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #555;
+	margin-left:7px;
+}
+#editEmployeeForm input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+#editEmployeeForm input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+#editEmployeeForm input:focus {
+	border: none;
+	outline: none;
+}
+#editEmployeeForm label { 
+	font-size: 120%;
+	display: inline-block;
+}
+#editEmployeeForm #submit {
+	font-size: 130%;
+	color: #00deff;
+	text-decoration: none;
+	font-family:CenturyGothicBold;
+	position: absolute;
+	bottom: 15px;
+	right: 10px; 	
+}
+#editEmployeeForm #submit:hover {
+	color: #09F;
+}
+
+/*
+                                                                                          
+,------.   ,--.,--.  ,--.           ,--.       ,--.       ,------.                        
+|  .---' ,-|  |`--',-'  '-.         |  | ,---. |  |-.     |  .---',---. ,--.--.,--,--,--. 
+|  `--, ' .-. |,--.'-.  .-'    ,--. |  || .-. || .-. '    |  `--,| .-. ||  .--'|        | 
+|  `---.\ `-' ||  |  |  |      |  '-'  /' '-' '| `-' |    |  |`  ' '-' '|  |   |  |  |  | 
+`------' `---' `--'  `--'       `-----'  `---'  `---'     `--'    `---' `--'   `--`--`--' 
+                                                                                                                                                           `--'                                                                                                              `--'             `---'                                                     
+Location: ../includes/ReportrHTML_editJobForm.inc.php
+*/
+#editJobForm {
+	position: absolute;
+	background-color: #fff;	
+	top: 75px;
+	left: 50%;
+	margin-left: -200px;
+	width: 400px;
+	height: 350px;
+	box-shadow: #525252 0 0 15px;
+	display: none;
+	opacity: 1.0;
+	z-index:10000;
+}
+#editJobForm #EJFcontent {
+	width: 380px;
+	height: 230px;
+	margin: 10px;	
+}
+
+#editJobForm.hide {
+	animation: hideBox 250ms;
+	-moz-animation: hideBox 250ms;	
+	-webkit-animation: hideBox 250ms;	
+	-o-animation: hideBox 250ms;	
+	
+}
+#editJobForm.show {
+	display: block;
+	opacity:0;
+	animation: showBox 250ms;
+	-moz-animation: showBox 250ms;	
+	-webkit-animation: showBox 250ms;	
+	-o-animation: showBox 250ms;	
+}
+#editJobForm.shown {
+	display: block;
+	opacity: 1.0;
+}
+#editJobForm #close {
+	text-decoration: none;
+	color: #fff;
+	font-family: CenturyGothicBold;	
+	font-size: 18px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+#editJobForm #editJobFormHeader {
+	font-size: 28px;
+	color: #fff;
+	background-color: #00deff;
+	width: 380px;
+	height: 36px;
+	padding: 0 10px;
+	 	
+}
+#editJobForm .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+#editJobForm .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+#editJobForm .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+#editJobForm .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+#editJobForm .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+
+#editJobForm input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #555;
+	margin-left:7px;
+}
+#editJobForm input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+#editJobForm input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+#editJobForm input:focus {
+	border: none;
+	outline: none;
+}
+#editJobForm label { 
+	font-size: 120%;
+	display: inline-block;
+}
+#editJobForm #submit {
+	font-size: 130%;
+	color: #00deff;
+	text-decoration: none;
+	font-family:CenturyGothicBold;
+	position: absolute;
+	bottom: 10px;
+	right: 10px; 	
+}
+#editJobForm #submit:hover {
+	color: #09F;
+}
+#editJobForm  #jobFormBox{
+	width: 300px;
+	height: 200px;	
+	position: absolute;
+	top:90px;
+	left: 50%;
+	margin-left: -150px;
+}
+#editJobForm  .selectAJob {
+	width: 290px;
+	height: 190px;
+	padding: 5px;
+	background-color: #00deff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+#editJobForm .selectAJob label.deselected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:none;
+}
+#editJobForm .selectAJob label.selected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:white;
+}
+#editJobForm .selectAJob label .sub {
+	font-size: 90%;	
+	font-family: CenturyGothic;
+}
+#editJobForm  .selectAJob input{
+	display:none;
+}
+/*
+                                                                                                                                  
+ ,-----.                        ,--.             ,------.                               ,--.      ,------.                        
+'  .--./,--.--. ,---.  ,--,--.,-'  '-. ,---.     |  .--. ' ,---.  ,---.  ,---. ,--.--.,-'  '-.    |  .---',---. ,--.--.,--,--,--. 
+|  |    |  .--'| .-. :' ,-.  |'-.  .-'| .-. :    |  '--'.'| .-. :| .-. || .-. ||  .--''-.  .-'    |  `--,| .-. ||  .--'|        | 
+'  '--'\|  |   \   --.\ '-'  |  |  |  \   --.    |  |\  \ \   --.| '-' '' '-' '|  |     |  |      |  |`  ' '-' '|  |   |  |  |  | 
+ `-----'`--'    `----' `--`--'  `--'   `----'    `--' '--' `----'|  |-'  `---' `--'     `--'      `--'    `---' `--'   `--`--`--' 
+                                                                 `--'                                                                                                              `--'             `---'                                                     
+Location: ../includes/ReportrHTML_createReportForm.inc.php
+*/
+#createReportForm {
+	position: absolute;
+	background-color: #fff;	
+	top: 75px;
+	left: 50%;
+	margin-left: -200px;
+	width: 400px;
+	height: 500px;
+	box-shadow: #525252 0 0 15px;
+	display: none;
+	opacity: 1.0;
+	z-index:10000;
+}
+  #createReportForm #CRFcontent {
+	width: 380px;
+	height: 480px;
+	margin: 10px;	
+}
+#createReportForm #dateBox {
+	margin-top: -20px;	
+}
+#createReportForm #CRFcontent #buttonBar a:link,
+#createReportForm #CRFcontent #buttonBar a:visited {
+	color: #777;
+	font-family:CenturyGothicBold, sans-serif;
+	width: 116px;
+	margin: 5px;
+	height: 24px;
+	text-align:center;
+	display: inline-block;
+	font-size: 12px;
+	text-decoration:none;
+	text-transform:uppercase;
+	border-bottom:2px solid #777;
+	
+}
+#createReportForm #CRFcontent #buttonBar a.selected {
+	color: #777;
+	font-family:CenturyGothicBold, sans-serif;
+	width: 116px;
+	margin: 5px;
+	height: 24px;
+	text-align:center;
+	display: inline-block;
+	font-size: 12px;
+	text-decoration:none;
+	text-transform:uppercase;
+	border-bottom:3px solid #00deff;
+	
+}
+#createReportForm #jobReports {
+	display:block;
+}
+#createReportForm #employeeReports {
+	display:none;
+}
+#createReportForm #jobSummaryReports {
+	display:none;
+}
+  #createReportForm.hide {
+	animation: hideBox 250ms;
+	-moz-animation: hideBox 250ms;	
+	-webkit-animation: hideBox 250ms;	
+	-o-animation: hideBox 250ms;	
+	
+}
+  #createReportForm.show {
+	display: block;
+	opacity:0;
+	animation: showBox 250ms;
+	-moz-animation: showBox 250ms;	
+	-webkit-animation: showBox 250ms;	
+	-o-animation: showBox 250ms;	
+}
+  #createReportForm.shown {
+	display: block;
+	opacity: 1.0;
+}
+  #createReportForm #close {
+	text-decoration: none;
+	color: #fff;
+	font-family: CenturyGothicBold;	
+	font-size: 18px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+  #createReportForm #createReportFormHeader {
+	font-size: 28px;
+	color: #fff;
+	background-color: #00deff;
+	width: 380px;
+	height: 36px;
+	padding: 0 10px;
+	 	
+}
+  #createReportForm .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+  #createReportForm .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+  #createReportForm .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+  #createReportForm .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+  #createReportForm .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+
+  #createReportForm input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #555;
+	margin-left:7px;
+}
+  #createReportForm input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+  #createReportForm input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+  #createReportForm input:focus {
+	border: none;
+	outline: none;
+}
+  #createReportForm label { 
+	font-size: 120%;
+	display: inline-block;
+}
+ #createReportForm #submit {
+	font-size: 130%;
+	color: #00deff;
+	text-decoration: none;
+	font-family:CenturyGothicBold;
+	position: absolute;
+	bottom: 10px;
+	right: 10px; 	
+}
+#createReportForm #submit:hover {
+	color: #09F;
+}
+#createReportForm  #jobFormBox{
+	width: 300px;
+	height: 200px;	
+	position: absolute;
+	top:170px;
+	left: 50%;
+	margin-left: -150px;
+}
+#createReportForm  #employeesBox {
+	width: 340px;
+	height: 170px;
+	position: absolute;
+	top:265px;
+	left: 20px;
+}
+#createReportForm #employeeBox .searchDiv {
+    position: relative;
+    top: auto;;
+    left: auto;
+
+}
+#createReportForm .selectEmployee {
+	width: 330px;
+	height: 170px;
+	padding: 5px;
+	background-color: #00deff;
+	overflow-y: auto;
+	overflow-x: hidden;
+	text-transform:capitalize;
+}
+#createReportForm  .selectAJob {
+	width: 290px;
+	height: 190px;
+	padding: 5px;
+	background-color: #00deff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+#createReportForm .selectAJob label.deselected,
+#createReportForm  .selectEmployee label.deselected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:none;
+}
+#createReportForm .selectAJob label.selected,
+#createReportForm  .selectEmployee label.selected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:white;
+}
+#createReportForm .selectAJob label .sub,
+#createReportForm .selectEmployee label .sub  {
+	font-size: 90%;	
+	font-family: CenturyGothic;
+}
+#createReportForm  .selectAJob input, 
+#createReportForm  .selectEmployee input{
+	display:none;
+}
+#createReportForm  .inactive label.deselected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	opacity:0.7;
+}
+#createReportForm  .searchHelp {
+	position: absolute;
+	color: #aaa;
+	font-family: CenturyGothic;
+	top: 10px;
+	left: 15px;
+	z-index: 1;
+}
+#createReportForm  .searchDiv {
+	position: absolute;
+	top: -32px; 
+	left: 0;
+}
+#createReportForm .searchIcon {
+	float: left;
+}
+#createReportForm .searchInputDiv { 
+	postion: absolute;
+	top: 0;
+	left: 0;	
+}
+#createReportForm  #searchInputBox {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	position: absolute;
+	top: 0;
+}
+#createReportForm .searchField {
+	position: absolute;
+	z-index:3;	
+	background: none !important;
+}
+/*
+                                                                     
+,--.                 ,--.            ,------.                        
+|  |    ,---.  ,---. `--',--,--,     |  .--. ' ,--,--. ,---.  ,---.  
+|  |   | .-. || .-. |,--.|      \    |  '--' |' ,-.  || .-. || .-. : 
+|  '--.' '-' '' '-' '|  ||  ||  |    |  | --' \ '-'  |' '-' '\   --. 
+`-----' `---' .`-  / `--'`--''--'    `--'      `--`--'.`-  /  `----' 
+              `---'                                   `---'                                                                                     `---'          
+Location: ../login.blade.php
+*/
+.signInPage #learnMore {
+	position: absolute;
+	top: 450px;
+	right: 20px;
+	font-size: 120%;
+	display: block;
+}
+.signInPage #subtitle {
+	font-size: 120%;
+}
+.signInPage #subtitle {
+	font-size: 120%;
+}
+.signInPage .li-box {
+	width: 80%;
+	margin-left:10%;
+	position: relative;
+	margin-top: 20px;
+	
+}
+.signInPage .li-txt {
+	width: 440px; 
+	position: absolute;
+	left: 100px;
+	top: 0;
+}
+
+#login-box {
+	background-color: #fff; 
+	position:absolute;
+	top: 50px;
+	left: 650px;
+	width: 250px;;
+	height: 575px;
+	padding-left: 15px;
+	border-left: 4px solid #00deff;
+}
+
+#login-box-title { 
+	font-size: 36px;
+	position: absolute;
+	top: -89px;
+	color: #525252;
+}
+#login-box .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+#login-box .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+#login-box .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+#login-box .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+#login-box input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #00deff;
+	font-weight:bold;
+	margin-left:7px;
+}
+#login-box input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+#login-box input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+#login-box input:focus {
+	border: none;
+	outline: none;
+}
+#login-box label { 
+	font-size: 120%;
+	display: block;
+	font-family:CenturyGothicBold;
+	color: #333;
+	
+}
+#login-box .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+#login-box #submit {
+	font-size: 130%;
+	color: #00deff;
+	text-decoration: none;
+	font-family:CenturyGothicBold;
+	position: absolute;
+	top: 170px;
+	right: 70px; 	
+}
+#login-box #submit:hover {
+	color: #09F;
+}/*
+                                                                                                                    
+,--.  ,--.                            ,------.                            ,---.   ,--.           ,--.               
+|  '--'  | ,---. ,--,--,--. ,---.     |  .--. ' ,--,--. ,---.  ,---.     '   .-',-'  '-.,--. ,--.|  | ,---.  ,---.  
+|  .--.  || .-. ||        || .-. :    |  '--' |' ,-.  || .-. || .-. :    `.  `-.'-.  .-' \  '  / |  || .-. :(  .-'  
+|  |  |  |' '-' '|  |  |  |\   --.    |  | --' \ '-'  |' '-' '\   --.    .-'    | |  |    \   '  |  |\   --..-'  `) 
+`--'  `--' `---' `--`--`--' `----'    `--'      `--`--'.`-  /  `----'    `-----'  `--'  .-'  /   `--' `----'`----'  
+                                                    `---'                            `---'                       
+Location: ../index.php
+*/
+
+div.homePage .instructions {
+	font-size: 36px;
+	width: 500px;
+	font-family: CenturyGothicBold;
+	color: #555;
+	position: absolute;
+	top: 80px;
+	left: 50%;
+	margin-left: -250px;
+	text-align:center;
+	display: block;
+}
+div.homePage .visualAid {
+	position: absolute;
+	top: 150px;
+	left: -70px;
+}
+div.homePage #cardIDinputBox {
+	position: absolute;
+	width: 327px;
+	height:25px;
+	top: 250px;
+	left: 175px;
+	padding: 0px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+}
+div.homePage input.textField {
+	background-color: #fff;
+	border: none;
+	font-size: 180%;
+	width:315px;
+	color: #00DEFF;
+	margin-left:7px;
+	margin-top: -8px;
+}
+div.homePage input:focus {
+	border: none;
+	outline: none;
+}
+/*
+                                                                                           
+,------.                                                  ,-----.,--.             ,--.     
+|  .---',--.  ,--. ,---. ,--.--. ,---.  ,---.  ,---.     '  .--./|  | ,---.  ,---.|  |,-.  
+|  `--,  \  `'  / | .-. ||  .--'| .-. :(  .-' (  .-'     |  |    |  || .-. || .--'|     /  
+|  `---. /  /.  \ | '-' '|  |   \   --..-'  `).-'  `)    '  '--'\|  |' '-' '\ `--.|  \  \  
+`------''--'  '--'|  |-' `--'    `----'`----' `----'      `-----'`--' `---'  `---'`--'`--' 
+                  `--'                                                                     
+				  Location: ../expressClock.php
+*/
+div.expressClockPage {
+	position: relative;
+}
+div.expressClockPage  .instructions {	
+	font-size: 36px;
+	font-family: CenturyGothicBold;
+	color: #555;
+	position: absolute;
+	top: 80px;
+	left: 90px;
+}
+ div.expressClockPage #formBox {
+	width: 300px;
+	height: 200px;	
+	position: absolute;
+	top: 277px;
+	left: 50%;
+	margin-left: -150px;
+}
+ div.expressClockPage .selectAJob {
+	width: 290px;
+	height: 190px;
+	padding: 5px;
+	background-color: #00deff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+ div.expressClockPage  a#newJobButton{
+	font-family: CenturyGothicBold;
+	color: #333;
+	position: absolute;
+	top: -19px;
+	right: 5px;
+	font-size: 18px;
+	text-decoration: none;
+}
+ div.expressClockPage .selectAJob label.deselected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:none;
+}
+div.expressClockPage  .selectAJob label.selected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:white;
+}
+ div.expressClockPage .selectAJob label .sub {
+	font-size: 90%;	
+	font-family: CenturyGothic;
+}
+div.expressClockPage  .selectAJob input {
+	display:none;
+}
+div.expressClockPage #searchDiv {
+	position: absolute;
+	top: -32px; 
+	left: 0;
+}
+div.expressClockPage #searchInputDiv, div.expressClockPage #searchIcon {
+	float: left;
+}
+div.expressClockPage #searchInputDiv {
+	float: left;
+}
+div.expressClockPage .inputWrapper {
+	padding-left: 5px;
+}
+div.expressClockPage #searchInputBox {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	position: absolute;
+	z-index: 2;
+}
+div.expressClockPage input.input-text-small{
+	background-color: rgba(255,255,255,0);
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #00deff;
+	margin-left:7px;
+	font-family: CenturyGothicBold;
+	position: absolute;
+	z-index:3;	
+}
+div.expressClockPage input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+div.expressClockPage input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+div.expressClockPage input:focus {
+	border: none;
+	outline: none;
+}
+div.expressClockPage #searchHelp {
+	position: absolute;
+	color: #aaa;
+	font-family: CenturyGothic;
+	top: 10px;
+	left: 15px;
+	z-index: 1;
+	
+}
+/*
+                                                                                          
+,------.   ,--.,--.  ,--.           ,--.       ,--.       ,------.                        
+|  .---' ,-|  |`--',-'  '-.         |  | ,---. |  |-.     |  .--. ' ,--,--. ,---.  ,---.  
+|  `--, ' .-. |,--.'-.  .-'    ,--. |  || .-. || .-. '    |  '--' |' ,-.  || .-. || .-. : 
+|  `---.\ `-' ||  |  |  |      |  '-'  /' '-' '| `-' |    |  | --' \ '-'  |' '-' '\   --. 
+`------' `---' `--'  `--'       `-----'  `---'  `---'     `--'      `--`--'.`-  /  `----' 
+                                                                           `---'          
+Location: ../editJob.php
+*/
+
+div.editJobPage {
+	position: relative;
+}
+
+div.editJobPage  .instructions {	
+	font-size: 36px;
+	font-family: CenturyGothicBold;
+	color: #555;
+	position: absolute;
+	top: 50px;
+	left: 150px;
+}
+div.editJobPage  #form {	
+	position: absolute;
+	top: 120px;
+	width:100%;
+	left: 0;
+}
+div.editJobPage .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+div.editJobPage .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+div.editJobPage .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+div.editJobPage .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+div.editJobPage .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+div.editJobPage input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #555;
+	margin-left:7px;
+}
+div.editJobPage input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+div.editJobPage input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+div.editJobPage input:focus {
+	border: none;
+	outline: none;
+}
+div.editJobPage label { 
+	font-size: 120%;
+	display: inline-block;
+}
+div.editJobPage #deleteIcon {
+	float: left;
+	margin-top: -8px;	
+}
+div.editJobPage input[type=checkbox] {
+	display:none;
+}
+/*
+                                                                                           
+,------.                                                  ,-----.,--.             ,--.     
+|  .---',--.  ,--. ,---. ,--.--. ,---.  ,---.  ,---.     '  .--./|  | ,---.  ,---.|  |,-.  
+|  `--,  \  `'  / | .-. ||  .--'| .-. :(  .-' (  .-'     |  |    |  || .-. || .--'|     /  
+|  `---. /  /.  \ | '-' '|  |   \   --..-'  `).-'  `)    '  '--'\|  |' '-' '\ `--.|  \  \  
+`------''--'  '--'|  |-' `--'    `----'`----' `----'      `-----'`--' `---'  `---'`--'`--' 
+                  `--'                                                                     
+				  Location: ../expressClockP2.php
+*/
+div.expressClockPage2 {
+	position: relative;
+}
+div.expressClockPage2  .instructions {	
+	font-size: 36px;
+	font-family: CenturyGothicBold;
+	color: #555;
+	position: absolute;
+	width: 550px;
+	top: 40px;
+	left: 50%;
+	margin-left: -275px;
+}
+div.expressClockPage2 #queueBox {
+	width: 260px;
+	height: 220px;	
+	padding: 0 10px 10px 10px;
+	position: absolute;
+	top: 240px;
+	left: 50%;
+	margin-left: -130px;
+}
+div.expressClockPage2 #queue {
+	width: 250px;
+	height: 200px;	
+	padding: 10px;
+	background-color: #00deff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+ div.expressClockPage2 .selectAnEmployee_ClockedIn label.deselected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:none;
+}
+div.expressClockPage2  .selectAnEmployee_ClockedIn label.selected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:white;
+}
+ div.expressClockPage2 .selectAnEmployee_ClockedIn label .sub {
+	font-size: 90%;	
+	font-family: CenturyGothic;
+}
+div.expressClockPage2  .selectAnEmployee_ClockedIn input {
+	display:none;
+}
+div.expressClockPage2 input.input-text-small{
+	background-color: rgba(255,255,255,0);
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #00deff;
+	margin-left:7px;
+	font-family: CenturyGothicBold;
+	position: absolute;
+	z-index:3;	
+}
+div.expressClockPage2 input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+div.expressClockPage2 input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+div.expressClockPage2 input:focus {
+	border: none;
+	outline: none;
+}
+div.expressClockPage2 span.jobSpan {
+	color: #333;
+	border-bottom:#00deff solid 3px;
+	font-family: CenturyGothicBold;
+	
+}
+
+div.expressClockPage2 h3 {
+	font-family: CenturyGothic;
+	font-weight:normal;
+	color: #555;	
+	margin:0;
+}
+div.expressClockPage2 h3 strong {
+	font-family: CenturyGothicBold !important;
+	color: #555;	
+}
+
+
+/* INPUT BOX */
+div.expressClockPage2 #searchDiv {
+	position: absolute;
+	top: -32px; 
+	left: 10px;
+}
+div.expressClockPage2 #searchInputDiv, div.expressClockPage2 #searchIcon {
+	float: left;
+}
+div.expressClockPage2 #searchInputDiv {
+	float: left;
+}
+div.expressClockPage2 .inputWrapper {
+	padding-left: 5px;
+}
+div.expressClockPage2 #searchInputBox {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	position: absolute;
+	z-index: 2;
+}
+div.expressClockPage2 #searchHelp {
+	position: absolute;
+	color: #aaa;
+	font-family: CenturyGothicBold;
+	top: 10px;
+	left: 15px;
+	z-index: 1;
+	
+}
+ div.expressClockPage2  a#newJobButton{
+	font-family: CenturyGothicBold;
+	color: #525252;
+	position: absolute;
+	top: -22px; 
+	right: 10px;
+	font-size: 18px;
+	text-decoration: none;
+}
+ div.expressClockPage2  a#newJobButton:hover {
+	color: #00deff;
+ }
+ div.expressClockPage2  #queue .expressBox {
+	width: 250px;
+	padding: 8px 0;
+	font-size: 100%;
+	color: #333;
+	font-family:CenturyGothicBold;
+	border-bottom: 1px solid white;
+	text-transform: capitalize;
+	position: relative;
+ }
+div.expressClockPage2 input[type=checkbox] {
+	display: none;	
+}
+div.expressClockPage2 #queue .expressBox a.expressRemove {
+	position: absolute;
+	top: 7px;
+	right: 10px;
+	color: white;
+	font-family:CenturyGothicBold;
+	text-transform: lowercase !important;
+	text-decoration:none;	
+}
+div.expressClockPage2  #queue #error {
+	color: white;
+	font-family:CenturyGothicBold;
+	border-bottom: 1px solid white;
+	text-transform: none !important;
+ }
+	/*
+                                                                                      
+,------.           ,--.         ,--.       ,--.       ,------.                        
+|  .---',--,--,  ,-|  |         |  | ,---. |  |-.     |  .--. ' ,--,--. ,---.  ,---.  
+|  `--, |      \' .-. |    ,--. |  || .-. || .-. '    |  '--' |' ,-.  || .-. || .-. : 
+|  `---.|  ||  |\ `-' |    |  '-'  /' '-' '| `-' |    |  | --' \ '-'  |' '-' '\   --. 
+`------'`--''--' `---'      `-----'  `---'  `---'     `--'      `--`--'.`-  /  `----' 
+
+Location: ../endJob.php
+*/
+
+div.endJobPage {
+	position: relative;
+}
+div.endJobPage  .instructions {	
+	font-size: 36px;
+	font-family: CenturyGothicBold;
+	color: #555;
+	position: absolute;
+	top: 50px;
+	left: 220px;
+}
+ div.endJobPage #formBox {
+	width: 300px;
+	height: 120px;	
+	position: absolute;
+	top: 130px;
+	left: 60px;
+}
+ div.endJobPage .selectAJob {
+	width: 290px;
+	height: 110px;
+	padding: 5px;
+	background-color: #00deff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+ div.endJobPage .selectAJob label.deselected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto -20px auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:none;
+}
+div.endJobPage  .selectAJob label.selected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto -20px auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:white;
+}
+ div.endJobPage .selectAJob label .sub {
+	font-size: 90%;	
+	font-family: CenturyGothic;
+}
+div.endJobPage  .selectAJob input {
+	display:none;
+}
+div.endJobPage .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+div.endJobPage .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+div.endJobPage .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+div.endJobPage .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+div.endJobPage .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+div.endJobPage .textbox-textarea {
+	width: 327px;
+	height:55px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom left;
+	display:block;
+	
+}
+div.endJobPage input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #555;
+	margin-left:7px;
+}
+div.endJobPage input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+div.endJobPage textarea.input-textarea{
+	background-color: #fff;
+	border: none;
+	font-size: 100%;
+	font-family:CenturyGothicBold;
+	width:310px;
+	height: 50px;
+	color: #00deff;
+	margin-left:1px;
+	resize:none;
+	outline:none;
+}
+div.endJobPage input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+div.endJobPage input:focus {
+	border: none;
+	outline: none;
+}
+div.endJobPage label { 
+	font-size: 120%;
+	display: inline-block;
+}
+div.endJobPage div#formFields {
+	position: absolute;
+	top: 260px;
+	left: 50px;	
+}
+div.endJobPage .disabled {
+	display: none;	
+}
+div.endJobPage div#jobBox  {
+	position: absolute;
+	top: 95px;
+	left: 50px;
+}
+/*
+                                                                                                                            
+,------.   ,--.,--.  ,--.      ,------.                 ,--.                                ,------.                        
+|  .---' ,-|  |`--',-'  '-.    |  .---',--,--,--. ,---. |  | ,---.,--. ,--.,---.  ,---.     |  .--. ' ,--,--. ,---.  ,---.  
+|  `--, ' .-. |,--.'-.  .-'    |  `--, |        || .-. ||  || .-. |\  '  /| .-. :| .-. :    |  '--' |' ,-.  || .-. || .-. : 
+|  `---.\ `-' ||  |  |  |      |  `---.|  |  |  || '-' '|  |' '-' ' \   ' \   --.\   --.    |  | --' \ '-'  |' '-' '\   --. 
+`------' `---' `--'  `--'      `------'`--`--`--'|  |-' `--' `---'.-'  /   `----' `----'    `--'      `--`--'.`-  /  `----' 
+                                                 `--'             `---'                                      `---'          
+Location: ../editEmployee.php
+*/
+
+div.editEmployeePage {
+	position: relative;
+}
+
+div.editEmployeePage  .instructions {	
+	font-size: 36px;
+	font-family: CenturyGothicBold;
+	color: #555;
+	position: absolute;
+	top: 100px;
+	left: 150px;
+}
+div.editEmployeePage  #form {	
+	position: absolute;
+	top: 220px;
+	width:100%;
+	left: 0;
+}
+div.editEmployeePage .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+div.editEmployeePage .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+div.editEmployeePage .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+div.editEmployeePage .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+div.editEmployeePage .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+div.editEmployeePage input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #555;
+	margin-left:7px;
+}
+div.editEmployeePage input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+div.editEmployeePage input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+div.editEmployeePage input:focus {
+	border: none;
+	outline: none;
+}
+div.editEmployeePage label { 
+	font-size: 120%;
+	display: inline-block;
+}
+div.editEmployeePage #deleteIcon {
+	float: left;
+	margin-top: -8px;	
+}
+div.editEmployeePage input[type=checkbox] {
+	display:none;
+}
+/*
+                                                                                     
+ ,-----.,--.             ,--.        ,--.            ,------.                        
+'  .--./|  | ,---.  ,---.|  |,-.     |  |,--,--,     |  .--. ' ,--,--. ,---.  ,---.  
+|  |    |  || .-. || .--'|     /     |  ||      \    |  '--' |' ,-.  || .-. || .-. : 
+'  '--'\|  |' '-' '\ `--.|  \  \     |  ||  ||  |    |  | --' \ '-'  |' '-' '\   --. 
+ `-----'`--' `---'  `---'`--'`--'    `--'`--''--'    `--'      `--`--'.`-  /  `----' 
+                                                                      `---
+Location: ../clockIn.php
+*/
+div.clockInPage {
+	position: relative;
+}
+div.clockInPage  #personBox {
+	width: 450px;
+	height: 125px;
+	margin: 22px auto 20px auto;
+	position: relative;
+}
+
+ div.clockInPage #personBox .employeeName {
+	font-family: CenturyGothicBold;
+	font-size: 160%;
+	color: #525252;
+	padding-top: 12px;
+	margin-left: 128px;
+	margin-bottom: 0px;
+	text-transform: capitalize;
+}
+ div.clockInPage #personBox .employeeCard {
+	font-family: CenturyGothic;
+	font-size: 160%;
+	color: #777;
+	padding: 0px;
+	margin-left: 128px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+div.clockInPage  .employeeCard span.prefix,   .employeeCard span.postfix {
+	color: #BBB;	
+}
+div.clockInPage  #personBox .employeeHours {
+	font-family: CenturyGothic;
+	font-size: 160%;
+	color: #777;
+	padding: 0px;
+	margin-left: 128px;
+	margin-top: 5px;
+}
+ div.clockInPage #personBox .label {
+	font-family: CenturyGothicBold;	
+}
+div.clockInPage  #personBox .employeePic {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	background: url(../artwork/image_nopicture.jpg) #00deff no-repeat;
+	border: 5px solid gray;
+}
+div.clockInPage  .instructions {	
+	font-size: 36px;
+	font-family: CenturyGothicBold;
+	color: #555;
+	position: absolute;
+	top: 180px;
+	left: 90px;
+}
+ div.clockInPage #formBox {
+	width: 300px;
+	height: 200px;	
+	position: absolute;
+	top: 277px;
+	left: 50%;
+	margin-left: -150px;
+}
+ div.clockInPage .selectAJob {
+	width: 290px;
+	height: 190px;
+	padding: 5px;
+	background-color: #00deff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+ div.clockInPage  a#newJobButton{
+	font-family: CenturyGothicBold;
+	color: #333;
+	position: absolute;
+	top: -19px;
+	right: 5px;
+	font-size: 18px;
+	text-decoration: none;
+}
+ div.clockInPage .selectAJob label.deselected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:none;
+}
+div.clockInPage  .selectAJob label.selected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:white;
+}
+ div.clockInPage .selectAJob label .sub {
+	font-size: 90%;	
+	font-family: CenturyGothic;
+}
+div.clockInPage  .selectAJob input {
+	display:none;
+}
+div.clockInPage .inputWrapper {
+	padding-left: 5px;
+}
+
+div.clockInPage input.input-text-small{
+	background-color: rgba(255,255,255,0);
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #00deff;
+	margin-left:7px;
+	font-family: CenturyGothicBold;
+	position: absolute;
+	z-index:3;	
+}
+div.clockInPage input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+div.clockInPage input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+div.clockInPage input:focus {
+	border: none;
+	outline: none;
+}
+div.clockInPage #searchHelp {
+	position: absolute;
+	color: #aaa;
+	font-family: CenturyGothic;
+	top: 10px;
+	left: 15px;
+	z-index: 1;
+	
+}
+div.clockInPage #searchDiv {
+	position: absolute;
+	top: -32px; 
+	left: 0;
+}
+div.clockInPage #searchInputDiv, div.clockInPage #searchIcon {
+	float: left;
+}
+div.clockInPage #searchInputBox {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(../images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	position: absolute;
+	z-index: 2;
+}
+/*
+                                                                                        
+ ,-----.,--.             ,--.         ,-----.                ,---.,--.                  
+'  .--./|  | ,---.  ,---.|  |,-.     '  .--./ ,---. ,--,--, /  .-'`--',--.--.,--,--,--. 
+|  |    |  || .-. || .--'|     /     |  |    | .-. ||      \|  `-,,--.|  .--'|        | 
+'  '--'\|  |' '-' '\ `--.|  \  \     '  '--'\' '-' '|  ||  ||  .-'|  ||  |   |  |  |  | 
+ `-----'`--' `---'  `---'`--'`--'     `-----' `---' `--''--'`--'  `--'`--'   `--`--`--' 
+                                                                                                                                                              `---
+Location: ../confirmClockIn.php | ../confirmClockOut.php
+*/
+div.clockOutConfirmPage .instructions,
+ div.clockInConfirmPage .instructions,
+ div.endJobConfirmPage .instructions{
+	font-size: 36px;
+	font-family: CenturyGothicBold;
+	color: #555;
+	position: absolute;
+	top: 100px;
+	left: 75px;
+}
+div.clockOutConfirmPage .visualAid,
+ div.clockInConfirmPage .visualAid,
+ div.endJobConfirmPage .visualAid,
+ div.expressConfirmPage .visualAid {
+	position: absolute;
+	top: 165px;
+	left: 50%;
+	margin-left: -118px;
+}
+div.clockOutConfirmPage .sub,
+ div.clockInConfirmPage .sub,
+  div.endJobConfirmPage .sub,
+ div.expressConfirmPage .sub {
+	font-size: 50%;
+	font-family: CenturyGothic;
+}
+div.clockOutConfirmPage .name,
+div.clockInConfirmPage .name,
+ div.endJobConfirmPage .job,
+ div.expressConfirmPage  .name {
+	color: #00deff;
+	border-bottom: 2px solid #525252;	
+}
+div.clockOutConfirmPage #countdownP,
+div.clockInConfirmPage #countdownP,
+ div.endJobConfirmPage #countdownP {
+	color: #444;
+	font-family:CenturyGothic;
+	font-size: 16px; 
+	width: 400px;
+	position: absolute;
+	top: 435px;	 
+}
+div.expressConfirmPage .instructions{
+	font-size: 36px;
+	font-family: CenturyGothicBold;
+	color: #555;
+	position: absolute;
+	top: 50px;
+	left: 75px;
+}
+div.expressConfirmPage #clockedInDiv,
+div.expressConfirmPage #clockedOutDiv {
+	width: 300px;
+	height: 100px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	font-size: 80%;
+	border-top: 1px solid #00deff;
+	padding: 5px 0;
+}
+div.expressConfirmPage #countdownP {
+	color: #444;
+	font-family:CenturyGothic;
+	font-size: 16px; 
+	width: 400px;
+	position: absolute;
+	top: 460px;	 
+}
+div.expressConfirmPage #count {
+	color: #777;
+	font-family:CenturyGothicBold;
+	font-size: 16px; 
+}
+/*
+                                                                                                     
+ ,-----.,--.                                   ,--.                  ,------.                        
+'  .--./|  ,---.  ,--,--.,--,--,  ,---.  ,---. |  | ,---.  ,---.     |  .--. ' ,--,--. ,---.  ,---.  
+|  |    |  .-.  |' ,-.  ||      \| .-. || .-. :|  || .-. || .-. |    |  '--' |' ,-.  || .-. || .-. : 
+'  '--'\|  | |  |\ '-'  ||  ||  |' '-' '\   --.|  |' '-' '' '-' '    |  | --' \ '-'  |' '-' '\   --. 
+ `-----'`--' `--' `--`--'`--''--'.`-  /  `----'`--' `---' .`-  /     `--'      `--`--'.`-  /  `----' 
+                                 `---'                    `---'                       `---'          
+Location: ../changelog.php
+*/
+.changelog {
+	width: 860px !important;
+	height: 520px !important;
+	margin-left: 20px !important;	
+}
+.changelog .divTable {
+	height: 440px !important;
+	padding-right: 10px;
+	overflow-y: auto !important;
+}
+.changelog h1 {
+	font-family: CenturyGothicBold;
+	font-size: 200%;
+	color: #525252;
+	width: 170px;
+	border-bottom: 3px solid #00deff;
+}
+.changelog .divRow {
+	margin-bottom: 30px;
+}
+.changelog p {
+	color: #535353;	
+}
+.changelog .version {
+	color: #00deff;
+	font-family:CenturyGothicBold;	
+}
+.changelog .date {
+	font-family:CenturyGothicBold;	
+}
+.changelog li {
+	font-size: 90%;
+	color: #444;	
+}
+.changelog li.n span.type {
+	color: #0C0;	
+	text-transform: uppercase;
+	font-family:CenturyGothicBold;
+}
+.changelog li.b span.type {
+	color: #F00;
+	text-transform: uppercase;
+	font-family:CenturyGothicBold;
+}
+.changelog li.r span.type {
+	color: #F90;
+	text-transform: uppercase;
+	font-family:CenturyGothicBold;
+}
+.changelog li.dev span.type {
+	color: #777;
+	text-transform: uppercase;
+	font-family:CenturyGothicBold;
+}
+.changelog li.break {
+	margin-bottom: 10px;
+}

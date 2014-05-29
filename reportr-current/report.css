@@ -1,0 +1,1353 @@
+/* CSS StyleSheet */
+
+/**********************************************************************/
+/*                     MAIN LAYOUT STYLES							  */
+/**********************************************************************/
+
+@font-face {
+	font-family: CenturyGothic;
+	src: url("fonts/gothic.ttf");
+}
+@font-face {
+	font-family: CenturyGothicBold;
+	src: url("fonts/gothicb.ttf");
+}
+@font-face {
+	font-family: CenturyGothicItalic;
+	src: url("fonts/gothici.ttf");
+}
+@font-face {
+	font-family: CenturyGothicBoldItalic;
+	src: url("fonts/gothicbi.ttf");
+}
+@font-face {
+	font-family: RobotoRegular;
+	src: url("fonts/Roboto-Regular.ttf");
+}
+@font-face {
+	font-family: RobotoCondensed;
+	src: url("fonts/Roboto-Condensed.ttf");
+}
+@font-face {
+	font-family: RobotoLight;
+	src: url("fonts/Roboto-Light.ttf");
+}
+@font-face {
+	font-family: RobotoBold;
+	src: url("fonts/Roboto-Bold.ttf");
+}
+@font-face {
+	font-family: RobotoThin;
+	src: url("fonts/Roboto-Thin.ttf");
+}
+@font-face {
+	font-family: RobotoBoldCondensed;
+	src: url("fonts/Roboto-BoldCondensed.ttf");
+	
+}
+/* ANIMATIONS */
+
+@keyframes hideBox
+{
+0%   {opacity: 1.0;}
+25%  {opacity: 0.75;}
+50%  {opacity: 0.5}
+75%  {opacity: 0.25;}
+100% {opacity: 0;}
+}
+
+@-moz-keyframes hideBox /* Firefox */
+{
+0%   {opacity: 1.0;}
+25%  {opacity: 0.75;}
+50%  {opacity: 0.5}
+75%  {opacity: 0.25;}
+100% {opacity: 0;}
+}
+
+@-webkit-keyframes hideBox /* Safari and Chrome */
+{
+0%   {opacity: 1.0;}
+25%  {opacity: 0.75;}
+50%  {opacity: 0.5}
+75%  {opacity: 0.25;}
+100% {opacity: 0;}
+}
+
+@-o-keyframes hideBox /* Opera */
+{
+0%   {opacity: 1.0;}
+25%  {opacity: 0.75;}
+50%  {opacity: 0.5}
+75%  {opacity: 0.25;}
+100% {opacity: 0;}
+}
+
+@keyframes showBox
+{
+0%   {opacity: 0;}
+25%  {opacity: 0.25;}
+50%  {opacity: 0.5}
+75%  {opacity: 0.75;}
+100% {opacity: 1;}
+}
+
+@-moz-keyframes showBox /* Firefox */
+{
+0%   {opacity: 0;}
+25%  {opacity: 0.25;}
+50%  {opacity: 0.5}
+75%  {opacity: 0.75;}
+100% {opacity: 1;}
+}
+
+@-webkit-keyframes showBox /* Safari and Chrome */
+{
+0%   {opacity: 0;}
+25%  {opacity: 0.25;}
+50%  {opacity: 0.5}
+75%  {opacity: 0.75;}
+100% {opacity: 1;}
+}
+
+@-o-keyframes showBox /* Opera */
+{
+0%   {opacity: 0;}
+25%  {opacity: 0.25;}
+50%  {opacity: 0.5}
+75%  {opacity: 0.75;}
+100% {opacity: 1;}
+}
+
+@keyframes hideBox7
+{
+0%   {opacity: 0.7;}
+25%  {opacity: 0.5;}
+50%  {opacity: 0.3;}
+75%  {opacity: 0.1;}
+100% {opacity: 0;}
+}
+
+@-moz-keyframes hideBox7 /* Firefox */
+{
+0%   {opacity: 0.7;}
+25%  {opacity: 0.5;}
+50%  {opacity: 0.3;}
+75%  {opacity: 0.1;}
+100% {opacity: 0;}
+}
+
+@-webkit-keyframes hideBox7 /* Safari and Chrome */
+{
+0%   {opacity: 0.7;}
+25%  {opacity: 0.5;}
+50%  {opacity: 0.3;}
+75%  {opacity: 0.1;}
+100% {opacity: 0;}
+}
+
+@-o-keyframes hideBox7 /* Opera */
+{
+0%   {opacity: 0.7;}
+25%  {opacity: 0.5;}
+50%  {opacity: 0.3;}
+75%  {opacity: 0.1;}
+100% {opacity: 0;}
+}
+
+@keyframes showBox7
+{
+0%   {opacity: 0;}
+25%  {opacity: 0.1;}
+50%  {opacity: 0.3;}
+75%  {opacity: 0.5;}
+100% {opacity: 0.7;}
+}
+
+@-moz-keyframes showBox7 /* Firefox */
+{
+0%   {opacity: 0;}
+25%  {opacity: 0.1;}
+50%  {opacity: 0.3;}
+75%  {opacity: 0.5;}
+100% {opacity: 0.7;}
+}
+
+@-webkit-keyframes showBox7 /* Safari and Chrome */
+{
+0%   {opacity: 0;}
+25%  {opacity: 0.1;}
+50%  {opacity: 0.3;}
+75%  {opacity: 0.5;}
+100% {opacity: 0.7;}
+}
+
+@-o-keyframes showBox7 /* Opera */
+{
+0%   {opacity: 0;}
+25%  {opacity: 0.1;}
+50%  {opacity: 0.3;}
+75%  {opacity: 0.5;}
+100% {opacity: 0.7;}
+}
+
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+	  ____   ____ ____  _____ _____ _   _   ____  _   _ _     _____ ____  
+	 / ___| / ___|  _ \| ____| ____| \ | | |  _ \| | | | |   | ____/ ___| 
+	 \___ \| |   | |_) |  _| |  _| |  \| | | |_) | | | | |   |  _| \___ \ 
+	  ___) | |___|  _ <| |___| |___| |\  | |  _ <| |_| | |___| |___ ___) |
+	 |____/ \____|_| \_\_____|_____|_| \_| |_| \_\\___/|_____|_____|____/ 
+                                                                      
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+.hide {
+	display:none;	
+}
+@media screen {
+
+body {
+	margin: 0;
+	padding: 0;	
+	font-family: CenturyGothic, Arial, Helvetica, sans-serif;
+	font-size:90%;
+	background-color: #fff;
+}
+#wrapper {
+	width: 100%;
+	margin: 0;
+	padding: 0;	
+	postion: relative;
+}
+#header {
+	width: 100%;
+	height: 100px;	
+	border-bottom: 3px solid #00DEFF;
+	postion: relative;
+	}
+
+#body {
+	width: 900px;
+	min-height: 300px;
+	background-color: #fff;	
+	margin: 0 auto;
+	position: relative;
+}
+#content {
+	background-color: #fff;	
+	width: 625px;
+	min-height: 600px;
+}
+#logo {
+	width: 900px;
+	height:100px;
+	position: absolute;
+	top: -67px;
+	left: 0;
+	background-image: url('artwork/HeaderLogoLightWithClock.png');	
+}
+#footer {
+	min-width: 900px;
+	width: 100%;
+	height: 15px;
+	background-color: #525252;	
+	padding: 25px 0;
+	box-shadow:0px 5px 5px #444;
+
+}
+
+
+
+/**********************************************************************/
+/*                         MAIN TEXT STYLES							  */
+/**********************************************************************/
+strong, .strong {
+	font-family: CenturyGothicBold;
+		
+}
+h1 {
+	font-family: CenturyGothic, sans-serif;
+	font-size: 300%;	
+}
+#footer p {
+	color: white;
+	font-family: CenturyGothicBold, sans-serif;
+	width: 900px;
+	margin: 0 auto;
+}
+
+#footer a:link, #footer a:visited {
+	color: #00DEFF;	
+	text-decoration: none;
+}
+#footer a:hover, #footer a:active {
+	text-decoration:underline;	
+}
+.hide {
+	display:none;	
+}
+
+/* BUTTONS STYLES */
+
+div#buttons {
+	margin-top: 20px;
+	margin-bottom:20px;
+	font-size: 140%;
+}
+div#buttons a.back:link, a.back:visited {
+	text-decoration: none;
+	color: #777;
+}
+div#buttons a.forward:link, a.forward:visited {
+	text-decoration: none;
+	color: #0cf;
+	font-family: CenturyGothicBold;
+}
+div#buttons a.forward {
+	margin-left: 475px;
+}
+
+
+/* ===========================
+      MESSAGE BOX
+==============================*/
+div#msgBox {
+	width: 400px;
+	min-height: 20px;
+	background: #777;
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	margin-left: -200px;
+	padding: 10px;
+	box-shadow:#333 0 0 20px;
+	font-family: CenturyGothic;
+	color: white; 
+	display: none;
+}
+div#msgBox a#close {
+	text-decoration: none;
+	position: absolute;
+	top: -2px;  
+	right: 5px;
+	color: white;
+}
+#msgBox.hide {
+	animation: hideBox 250ms;
+	-moz-animation: hideBox 250ms;	
+	-webkit-animation: hideBox 250ms;	
+	-o-animation: hideBox 250ms;		
+}
+#msgBox.show {
+	display: block;
+	opacity:0;
+	animation: showBox 250ms;
+	-moz-animation: showBox 250ms;	
+	-webkit-animation: showBox 250ms;	
+	-o-animation: showBox 250ms;		
+}
+#msgBox.shown {
+	display: block;
+	opacity:1.0;
+}
+#msgBox #boxType {
+	display: none;	
+}
+
+/* ------------------------------------------
+				REPORTS
+--------------------------------------------*/
+.report td, .report th, .employeeReport td, .employeeReport th {
+	text-align: left;
+}
+.report {
+	width: 	600px;
+	min-height: 550px;
+	position: relative;
+}
+.report #screen {
+	width: 100%; 
+	height:100%;
+	opacity:0.7;
+	background-color:#fff;	
+	position: absolute;
+	z-index: 9;
+	top:0px;
+	left: 0px;
+	display: none;
+	
+}
+.report #screen.hide {
+	animation: hideBox7 250ms;
+	-moz-animation: hideBox7 250ms;	
+	-webkit-animation: hideBox7 250ms;	
+	-o-animation: hideBox7 250ms;	
+	
+}
+.report #screen.show {
+	display: block;
+	opacity:0;
+	animation: showBox7 250ms;
+	-moz-animation: showBox7 250ms;	
+	-webkit-animation: showBox7 250ms;	
+	-o-animation: showBox7 250ms;	
+}
+.report #screen.shown {
+	display: block;
+	opacity: 0.7;
+}
+.report #createReportFormLink {
+	position: absolute;
+	top: -25px;
+	right: 0;	
+	color: #00deff;
+	font-family:CenturyGothicBold;
+	
+}
+.report #createReportFormLink a{
+	text-decoration: none;
+	color: #0cf;
+	font-family: CenturyGothicBold;
+	font-size: 140%;
+}
+.report h3 {
+	font-size: 20px;
+}
+.report #heading {
+	height: 45px;
+	border-bottom: 2px solid #555;
+	position: relative;
+}
+.report #jobNumber {
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+}
+.report #date {
+	float: right;
+}
+.report #jobInfo {
+	width: 600px;	
+	text-align: left;
+}
+.report .custcode {
+	text-transform: uppercase;	
+}
+.report #jobInfo th {
+	width: 175px;
+	font-family:CenturyGothicBold;	
+}
+.report #jobInfo th, .report #jobInfo td {
+	border-collapse:collapse;
+	border-bottom:1px solid #ccc;
+	height: 25px;	
+}
+.report #clockLog {
+	width: 600px;	
+	text-align: left;
+	margin-top: 0px;
+}
+.report #clockLog td {
+	padding: 5px;	
+	text-align: left;
+}
+.report #tablehead {
+	background-color: #00deff;
+	color: black;
+	font-family:CenturyGothicBold;
+	margin-top: 20px;
+	padding: 5px;
+	box-shadow:#333 0 2px 5px; 
+}
+.report #tablehead div {
+	display: inline-block;	
+	padding: 5px;
+	margin-left: -5px;
+}
+.report .emp, .report .in, .report .out, .report .date, .report .hrs {
+	font-size: 14px;
+}
+.report .emp {
+	width: 180px;
+	text-transform:capitalize;
+}
+.report .date, .report .in, .report .out {
+	width: 100px;
+}
+.report #tablefoot {
+	background-color: #ccc;
+	color: black;
+	font-family:CenturyGothic;
+	margin-top: 5px;
+	padding: 5px;
+	box-shadow:#333 0 -2px 5px;
+}
+.report #tablefoot div {
+	display: inline-block;	
+	padding: 5px;
+	margin-left: -5px;
+}
+.report #tablefoot .finProd {
+	width: 360px; 
+}
+.report #tablefoot .totalHrs strong {
+	margin-right: 30px;	 
+}
+.report #prodBox {
+	background: #777;
+	width: 125px;
+	height:125px;	
+	padding: 5px;
+	position: absolute;
+	top: 59px;
+	right:0px;
+	color: #fff;
+	text-align: center;
+	vertical-align:middle;
+	overflow: hidden;
+}
+.report #prodBox .label {
+	font-family: CenturyGothicBold;
+	display: block;
+	margin-top: 15px;
+}
+.report #prodBox .score {
+	font-size: 70px;
+	letter-spacing:-3px; 
+}
+.report #prodBox.good {
+	background-color: green;	
+}
+.report #prodBox.bad {
+	background-color: red;	
+}
+.report #genDateBox {
+	color: #444;
+	font-size: 80%;	
+	clear: both;
+	margin-top: 20px;
+}
+.report #incentive {
+	margin-top: 10px;
+	font-size: 90%;
+	text-align: right;
+	position: relative;
+}
+.report .qty-so-far {
+    font-weight: bold;
+    color: #555;
+    text-align: center !important;
+    padding: 8px 0 !important;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+.report #incentive a:link, .report #incentive a:visited  {
+	color: #666;
+	font-family: CenturyGothicBold, sans-serif;
+	text-decoration:none;
+}
+.report #incentiveForm a.submit {
+	color: #00deff;	
+}
+.report #incentiveForm {
+	display: none;	
+	opacity: 1.0;
+}
+.report #incentiveForm.show {
+	display: block;
+	opacity:0;
+	animation: showBox 250ms;
+	-moz-animation: showBox 250ms;	
+	-webkit-animation: showBox 250ms;	
+	-o-animation: showBox 250ms;
+}
+.report #incentiveForm.shown {
+	display: block;	
+	opacity: 1.0;
+}
+.report #incentiveForm.hide {
+	animation: hideBox 250ms;
+	-moz-animation: hideBox 250ms;	
+	-webkit-animation: hideBox 250ms;	
+	-o-animation: hideBox 250ms;	
+}
+.report #incentiveList {
+	width: 100%;	
+	text-align: left;
+	margin-top: 10px;
+}
+.report #incentiveList.empty {
+	display: none;	
+}
+.report #incentiveList #ILhead {
+	background-color: green;
+	color: white;
+	font-family:CenturyGothicBold;
+	text-align:left;
+}
+.report #incentiveList .empIL {
+	display: inline-block;
+	min-width:350px;
+	padding: 5px;
+}
+.report #incentiveList .bonusIL {
+	display: inline-block;
+	padding: 5px;
+}
+.report #commentsBox h3 {
+	font-family:CenturyGothicBold;
+	margin:0;
+	color: #444;
+	border-bottom: #00deff solid 2px;
+	width: 115px;
+}
+.report #commentsBox p {
+	margin: 5px 0;	
+	color: #555;
+	font-family:CenturyGothic;
+	padding-bottom:10px;
+	border-bottom:1px solid #bbb;
+}
+.report .setup {
+	font-family: CenturyGothicItalic;
+	color: #F00;	
+}
+/* EMPLOYEE REPORT SPECIFIC */
+.employeeReport #employeeInfo {
+	width: 600px;	
+	text-align: left;
+}
+.employeeReport #employeeInfo th {
+	width: 175px;
+	height: 25px;
+	font-family:CenturyGothicBold;	
+}
+.employeeReport #employeeInfo th, .employeeReport #employeeInfo td {
+	border-collapse:collapse;
+	border-bottom:1px solid #ccc;
+	height: 25px;	
+}
+.employeeReport #employeeName {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #444;
+	text-transform:capitalize;
+	
+}
+.employeeReport #employeeName strong {
+	color: #0cf;
+	
+}
+.employeeReport #date {
+	position: absolute;
+	top: 15px;
+	right: 0;
+	font-size: 90%;
+	color: #444;
+}
+.employeeReport .reportEntry {
+	position: relative;	
+}
+.employeeReport #prodBox {
+	background: #00deff;
+	width: 122px;
+	height:122px;	
+	padding: 5px;
+	position: absolute;
+	top: 45px;
+	right:0px;
+	color: #fff;
+	text-align: center;
+	vertical-align:middle;
+	overflow: hidden;
+}
+.employeeReport #prodBox .label {
+	font-family: CenturyGothicBold;
+	display: block;
+	margin-top: 15px;
+}
+.employeeReport #prodBox .score {
+	font-size: 70px;
+	letter-spacing:-3px; 
+}
+.employeeReport #prodBox.good {
+	background-color: green;	
+}
+.employeeReport #prodBox.bad {
+	background-color: red;	
+}
+.employeeReport .date {
+	width: 80px;
+}
+.employeeReport .job {
+	width: 100px;
+}
+.employeeReport .in, .employeeReport .out {
+	width: 100px;
+}
+.employeeReport #tablefoot .totalHrs strong {
+	margin-right: 30px;
+	margin-left: 310px !important;	 
+}
+.employeeReport tr.lunch td {
+    color: red;
+    font-style: italic;
+
+}
+/*
+                                                                                                                                  
+ ,-----.                        ,--.             ,------.                               ,--.      ,------.                        
+'  .--./,--.--. ,---.  ,--,--.,-'  '-. ,---.     |  .--. ' ,---.  ,---.  ,---. ,--.--.,-'  '-.    |  .---',---. ,--.--.,--,--,--. 
+|  |    |  .--'| .-. :' ,-.  |'-.  .-'| .-. :    |  '--'.'| .-. :| .-. || .-. ||  .--''-.  .-'    |  `--,| .-. ||  .--'|        | 
+'  '--'\|  |   \   --.\ '-'  |  |  |  \   --.    |  |\  \ \   --.| '-' '' '-' '|  |     |  |      |  |`  ' '-' '|  |   |  |  |  | 
+ `-----'`--'    `----' `--`--'  `--'   `----'    `--' '--' `----'|  |-'  `---' `--'     `--'      `--'    `---' `--'   `--`--`--' 
+                                                                 `--'                                                                                                              `--'             `---'                                                     
+Location: ../includes/ReportrHTML_createReportForm.inc.php
+*/
+#createReportForm {
+	position: absolute;
+	background-color: #fff;	
+	top: 75px;
+	left: 50%;
+	margin-left: -200px;
+	width: 400px;
+	height: 450px;
+	box-shadow: #525252 0 0 15px;
+	display: none;
+	opacity: 1.0;
+	z-index:10000;
+}
+  #createReportForm #CRFcontent {
+	width: 380px;
+	height: 430px;
+	margin: 10px;	
+}
+#createReportForm #dateBox {
+	margin-top: -20px;	
+}
+#createReportForm #CRFcontent #buttonBar a:link,
+#createReportForm #CRFcontent #buttonBar a:visited {
+	color: #777;
+	font-family:CenturyGothicBold, sans-serif;
+	width: 116px;
+	margin: 5px;
+	height: 24px;
+	text-align:center;
+	display: inline-block;
+	font-size: 12px;
+	text-decoration:none;
+	text-transform:uppercase;
+	border-bottom:2px solid #777;
+	
+}
+#createReportForm #CRFcontent #buttonBar a.selected {
+	color: #777;
+	font-family:CenturyGothicBold, sans-serif;
+	width: 116px;
+	margin: 5px;
+	height: 24px;
+	text-align:center;
+	display: inline-block;
+	font-size: 12px;
+	text-decoration:none;
+	text-transform:uppercase;
+	border-bottom:3px solid #00deff;
+	
+}
+#createReportForm #jobReports {
+	display:block;
+}
+#createReportForm #employeeReports {
+	display:none;
+}
+#createReportForm #jobSummaryReports {
+	display:none;
+}
+  #createReportForm.hide {
+	animation: hideBox 250ms;
+	-moz-animation: hideBox 250ms;	
+	-webkit-animation: hideBox 250ms;	
+	-o-animation: hideBox 250ms;	
+	
+}
+  #createReportForm.show {
+	display: block;
+	opacity:0;
+	animation: showBox 250ms;
+	-moz-animation: showBox 250ms;	
+	-webkit-animation: showBox 250ms;	
+	-o-animation: showBox 250ms;	
+}
+  #createReportForm.shown {
+	display: block;
+	opacity: 1.0;
+}
+  #createReportForm #close {
+	text-decoration: none;
+	color: #fff;
+	font-family: CenturyGothicBold;	
+	font-size: 18px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+  #createReportForm #createReportFormHeader {
+	font-size: 28px;
+	color: #fff;
+	background-color: #00deff;
+	width: 380px;
+	height: 36px;
+	padding: 0 10px;
+	 	
+}
+  #createReportForm .helpText {
+	color: #777;
+	font-size: 90%;	
+}
+  #createReportForm .inputWrapper {
+	padding-left: 10px;
+	padding-top: 15px;	
+}
+  #createReportForm .textbox-small {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+  #createReportForm .textbox-tiny {
+	width: 58px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(images/textfield_tiny.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+}
+  #createReportForm .textbox-large {
+	width: 327px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(images/textfield_large.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	
+}
+
+  #createReportForm input.input-text-small{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:135px;
+	color: #555;
+	margin-left:7px;
+}
+  #createReportForm input.input-text-large{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:315px;
+	color: #555;
+	margin-left:7px;
+}
+  #createReportForm input.input-text-tiny{
+	background-color: #fff;
+	border: none;
+	font-size: 120%;
+	width:45px;
+	color: #555;
+	margin-left:7px;
+}
+  #createReportForm input:focus {
+	border: none;
+	outline: none;
+}
+  #createReportForm label { 
+	font-size: 120%;
+	display: inline-block;
+}
+ #createReportForm #submit {
+	font-size: 130%;
+	color: #00deff;
+	text-decoration: none;
+	font-family:CenturyGothicBold;
+	position: absolute;
+	bottom: 10px;
+	right: 10px; 	
+}
+#createReportForm #submit:hover {
+	color: #09F;
+}
+#createReportForm  #jobFormBox{
+	width: 300px;
+	height: 200px;	
+	position: absolute;
+	top:170px;
+	left: 50%;
+	margin-left: -150px;
+}
+#createReportForm  #employeesBox {
+	width: 320px;
+	height: 120px;	
+	position: absolute;
+	top:235px;
+	left: 20px;
+}
+#createReportForm .selectEmployee {
+	width: 310px;
+	height: 150px;
+	padding: 5px;
+	background-color: #00deff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+#createReportForm  .selectAJob {
+	width: 290px;
+	height: 190px;
+	padding: 5px;
+	background-color: #00deff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+#createReportForm .selectAJob label.deselected,
+#createReportForm  .selectEmployee label.deselected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:none;
+}
+#createReportForm .selectAJob label.selected,
+#createReportForm  .selectEmployee label.selected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	background:white;
+}
+#createReportForm .selectAJob label .sub,
+#createReportForm .selectEmployee label .sub  {
+	font-size: 90%;	
+	font-family: CenturyGothic;
+}
+#createReportForm  .selectAJob input, 
+#createReportForm  .selectEmployee input{
+	display:none;
+}
+#createReportForm  .inactive label.deselected {
+	width: 270px;
+	font-family: CenturyGothicBold;	
+	font-size: 100%;
+	display: block;
+	color: #444;
+	margin: 0 auto 0 auto;
+	padding: 5px;
+	border-bottom: 1px solid white;
+	opacity:0.7;
+}
+#createReportForm  .searchHelp {
+	position: absolute;
+	color: #aaa;
+	font-family: CenturyGothicBold;
+	top: 10px;
+	left: 15px;
+	z-index: 1;
+}
+#createReportForm  .searchDiv {
+	position: absolute;
+	top: -32px; 
+	left: 0;
+}
+#createReportForm .searchIcon {
+	float: left;
+}
+#createReportForm .searchInputDiv {
+	postion: absolute;
+	top: 0;
+	left: 0;	
+}
+#createReportForm  #searchInputBox {
+	width: 150px;
+	height:20px;
+	padding:5px 5px 5px 5px;
+	background: url(images/textfield_small.jpg) no-repeat;
+	background-position:bottom;
+	display:inline-block;
+	position: absolute;
+	top: 0;
+}
+#createReportForm .searchField {
+	position: absolute;
+	z-index:3;	
+	background: none !important;
+}
+
+
+
+}
+
+
+
+
+
+
+
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+		  ____  ____  ___ _   _ _____   ____  _   _ _     _____ ____  
+		 |  _ \|  _ \|_ _| \ | |_   _| |  _ \| | | | |   | ____/ ___| 
+		 | |_) | |_) || ||  \| | | |   | |_) | | | | |   |  _| \___ \ 
+		 |  __/|  _ < | || |\  | | |   |  _ <| |_| | |___| |___ ___) |
+		 |_|   |_| \_\___|_| \_| |_|   |_| \_\\___/|_____|_____|____/ 												  
+                                                                      
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+
+
+
+
+
+
+
+@media print {
+#logo {
+	content: url('artwork/HeaderLogoLightWithClock.png');	
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+body {
+	margin: 0;
+	padding: 0;	
+	font-family: CenturyGothic, Arial, Helvetica, sans-serif;
+	font-size:90%;
+	background-color: #fff;
+}
+#wrapper {
+	width: 100%;
+	margin: 0;
+	padding: 0;	
+	postion: relative;
+}
+#header {
+	width: 100%;
+	height: 100px;	
+	border-bottom: 3px solid #00DEFF;
+	postion: relative;
+	}
+
+#body {
+	width: 900px;
+	min-height: 300px;
+	background-color: #fff;	
+	margin: 0 auto;
+	position: relative;
+}
+#content {
+	background-color: #fff;	
+	width: 625px;
+	min-height: 600px;
+}
+#logo {
+	width: 900px;
+	height:100px;
+	position: absolute;
+	top: -67px;
+	left: 0;
+}
+#footer {
+	display: none;
+
+}
+#screen {
+	display: none;
+}	
+#createReportFormLink {
+	display:none;	
+}
+
+
+/**********************************************************************/
+/*                         MAIN TEXT STYLES							  */
+/**********************************************************************/
+strong, .strong {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-weight:bold;
+}
+h1 {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 300%;	
+}
+div#buttons {
+	display: none;
+}
+div#msgBox {
+	display: none;
+}
+.report {
+	width: 	8.5in;
+	min-height: 11in;
+	position: relative;
+}
+.report h3 {
+	font-size: 20pt;
+}
+.report #heading {
+	height: .7in;
+	border-bottom: 2px solid #555;
+	position: relative;
+}
+.report #jobNumber {
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+}
+.report #date {
+	float: right;
+}
+.report #jobInfo {
+	width: 8.5in;	
+	text-align: left;
+}
+.report #jobInfo th {
+	width: 175px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;	
+}
+.report #jobInfo th, .report #jobInfo td {
+	border-collapse:collapse;
+	border-bottom:1px solid #ccc;
+	height: 25px;	
+	text-align: left;
+}
+.report #clockLog {
+	width: 8.5in;	
+	text-align: left;
+	margin-top: 0px;
+}
+.report #clockLog td {
+	padding: 5px;	
+}
+.report #tablehead {
+	background-color: #00deff;
+	color: black;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	margin-top: 20px;
+	padding: 5px;
+	border-bottom: #333 1px solid;
+}
+.report #tablehead div {
+	display: inline-block;	
+	padding: 5px;
+	margin-left: -5px;
+}
+.report .emp {
+	width: 4in;
+}
+.report .date, .report .in, .report .out {
+	width: 1.0in;
+}
+.report #tablefoot {
+	background-color: #ccc;
+	color: black;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	margin-top: 5px;
+	padding: 5px;
+	box-shadow:#333 0 -2px 5px;
+}
+.report #tablefoot div {
+	display: inline-block;	
+	padding: 5px;
+	margin-left: -5px;
+}
+.report #tablefoot .finProd {
+	width: 6.1in; 
+}
+.report #tablefoot .totalHrs strong {
+	margin-right: 30px;	 
+}
+.report #prodBox {
+	content: #fff;
+	width: 125px;
+	height:125px;	
+	padding: 5px;
+	position: absolute;
+	top: 85px;
+	right:0px;
+	color: #fff;
+	text-align: center;
+	vertical-align:middle;
+	overflow: hidden;
+}
+.report #prodBox .label {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-weight:bold;
+	display: block;
+	margin-top: 15px;
+}
+.report #prodBox .score {
+	font-size: 70px;
+	letter-spacing:-3px; 
+}
+.report #prodBox.good {
+	color: green;
+	background-color:white;
+}
+.report #prodBox.bad {
+	color: red;	
+	background-color:white;
+}
+.report #genDateBox {
+	color: #444;
+	font-size: 80%;	
+}
+.report #incentive a {
+	display: none;
+}
+.report #incentive {
+	display: none;
+}
+.report #incentiveForm {
+	display: none;	
+}
+.report #incentiveList {
+	width: 100%;	
+	text-align: left;
+	margin-top: 10px;
+}
+.report #incentiveList.empty {
+	display: none;	
+}
+.report #incentiveList #ILhead {
+	color: green;
+	font-family:CenturyGothicBold;
+	text-align:left;
+	border-bottom: 2px solid green;
+}
+.report #incentiveList .empIL {
+	display: inline-block;
+	min-width:350px;
+	padding: 5px;
+}
+.report #incentiveList .bonusIL {
+	display: inline-block;
+	padding: 5px;
+}
+.report #commentsBox h3 {
+	font-family:CenturyGothicBold;
+	margin:0.25in 0 0 0;
+	color: #444;
+	border-bottom: #00deff solid 2px;
+	width: 1.5in;
+}
+.report #commentsBox p {
+	margin: 5px 0;	
+	color: #555;
+	font-family:CenturyGothic;
+	padding-bottom:10px;
+	border-bottom:1px solid #bbb;
+}
+.report .setup {
+	font-family: CenturyGothicItalic;
+	color: #F00;	
+}
+/* EMPLOYEE REPORT SPECIFIC */
+.employeeReport #employeeInfo {
+	width: 600px;	
+	text-align: left;
+}
+.employeeReport #employeeInfo th {
+	width: 175px;
+	height: 25px;
+	font-family:CenturyGothicBold;	
+}
+.employeeReport #employeeInfo th, .employeeReport #employeeInfo td {
+	border-collapse:collapse;
+	border-bottom:1px solid #ccc;
+	height: 25px;	
+}
+.employeeReport #employeeName {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #444;
+	
+}
+.employeeReport #employeeName strong {
+	color: #0cf;
+	
+}
+.employeeReport #date {
+	position: absolute;
+	top: 15px;
+	right: 0;
+	font-size: 90%;
+	color: #444;
+}
+.employeeReport .reportEntry {
+	position: relative;	
+	page-break-inside: avoid;
+}
+.employeeReport #prodBox {
+	content: #fff;
+	width: 122px;
+	height:122px;	
+	padding: 5px;
+	position: absolute;
+	top: 75px;
+	right:0px;
+	color: #00deff;
+	text-align: center;
+	vertical-align:middle;
+	overflow: hidden;
+}
+.employeeReport #prodBox .label {
+	font-family: CenturyGothicBold;
+	display: block;
+	margin-top: 15px;
+}
+.employeeReport #prodBox .score {
+	font-size: 70px;
+	letter-spacing:-3px; 
+}
+.employeeReport #prodBox.good {
+	background-color: green;	
+}
+.employeeReport #prodBox.bad {
+	background-color: red;	
+}
+.employeeReport .date {
+	width: 80px !important;
+}
+.employeeReport .job {
+	width: 100px !important;
+}
+.employeeReport .in, .employeeReport .out {
+	width: 100px !important;
+}
+.employeeReport #tablefoot .totalHrs strong {
+	margin-right: 30px;
+	margin-left: 310px !important;	 
+}
+.employeeReport tr.lunch td {
+    color: red;
+    font-style: italic;
+
+}
+#createReportForm {
+	display: none;	
+}
+}
+
+
+
